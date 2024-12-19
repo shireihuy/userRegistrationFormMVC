@@ -1,0 +1,91 @@
+﻿@model userRegistrationFormMVC.Controllers.UserInfo
+
+@{
+    ViewData["Title"] = "ユーザー情報登録";
+}
+
+<h4>ユーザー情報</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Confirm" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">氏名:</label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Kana" class="control-label">氏名(カナ):</label>
+                <input asp-for="Kana" class="form-control" required onblur="this.value = this.value.trim();" />
+                <span asp-validation-for="Kana" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label>性別:</label>
+                <div class="gender-container">
+                    <label>
+                        <input type="radio" asp-for="Gender" value="男性" required /> 男性
+                    </label>
+                    <label>
+                        <input type="radio" asp-for="Gender" value="女性" /> 女性
+                    </label>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Birthdate" class="control-label">生年月日:</label>
+                <input asp-for="Birthdate" class="form-control" type="date" required />
+                <span asp-validation-for="Birthdate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">電話番号:</label>
+                <input asp-for="PhoneNumber" class="form-control" maxlength="11" required />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">メールアドレス:</label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LoginId" class="control-label">ログインID:</label>
+                <input asp-for="LoginId" class="form-control" required />
+                <span asp-validation-for="LoginId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">パスワード:</label>
+                <input asp-for="Password" class="form-control" type="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+             <div class="form-group"> 
+                <label asp-for="ConfirmPassword" class="control-label">パスワード(確認用):</label> 
+                 <input asp-for="ConfirmPassword" class="form-control" type="password" required /> 
+                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span> 
+             </div> 
+
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">一覧に戻る</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

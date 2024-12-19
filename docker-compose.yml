@@ -1,0 +1,6 @@
+services:
+  userregistrationformmvc:
+    image: ${DOCKER_REGISTRY-}userregistrationformmvc
+    build:
+      context: userRegistrationFormMVC
+      dockerfile: Dockerfile

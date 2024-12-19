@@ -1,0 +1,46 @@
+﻿@model userRegistrationFormMVC.Controllers.UserInfo
+
+@{
+    ViewData["Title"] = "詳細"; 
+}
+
+<h1>詳細</h1> <!-- "Details" -->
+
+<div>
+    <h4>ユーザー情報</h4> <!-- "User Info" -->
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">氏名:</dt> <!-- "Name" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">氏名(カナ):</dt> <!-- "Kana" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Kana)
+        </dd>
+        <dt class="col-sm-2">性別:</dt> <!-- "Gender" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">生年月日:</dt> <!-- "Birthdate" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+        <dt class="col-sm-2">電話番号:</dt> <!-- "Phone Number" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">メールアドレス:</dt> <!-- "Email" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">ログインID:</dt> <!-- "Login ID" -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LoginId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">編集</a> | <!-- "Edit" -->
+    <a asp-action="Index">一覧に戻る</a> <!-- "Back to List" -->
+</div>

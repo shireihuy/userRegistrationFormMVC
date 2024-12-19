@@ -1,0 +1,111 @@
+﻿@model IEnumerable<userRegistrationFormMVC.Controllers.UserInfo>
+
+@{
+    ViewData["Title"] = "情報一覧";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create">新規作成</a>
+</p>
+
+<!-- 並べ替えセクション -->
+<div>
+    <label for="sortBy">並べ替え:</label>
+    <select id="sortBy">
+        <option value="Name">氏名</option>
+        <option value="Kana">氏名(カナ)</option>
+        <option value="Birthdate">生年月日</option>
+        <option value="LoginId">ログインID</option>
+    </select>
+    <label for="sortOrder">並べ替え順:</label>
+    <select id="sortOrder">
+        <option value="asc">昇順</option>
+        <option value="desc">降順</option>
+    </select>
+    <button onclick="applySort()">並べ替え</button>
+</div>
+
+<!-- データテーブル -->
+<table id="userTable" class="table">
+    <thead>
+        <tr>
+            <th>氏名</th> <!-- Name -->
+            <th>氏名(カナ)</th> <!-- Kana -->
+            <th>性別</th> <!-- Gender -->
+            <th>生年月日</th> <!-- Birthdate -->
+            <th>電話番号</th> <!-- Phone Number -->
+            <th>メールアドレス</th> <!-- Email -->
+            <th>ログインID</th> <!-- Login ID -->
+            <th>操作</th> <!-- Actions -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="userRow">
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Kana)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.LoginId)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">編集</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">詳細</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">削除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    // ユーザーの選択に基づいて並べ替えを適用
+    function applySort() {
+        var sortBy = document.getElementById('sortBy').value;
+        var sortOrder = document.getElementById('sortOrder').value;
+
+        var rows = Array.from(document.querySelectorAll('#userTable .userRow'));
+
+        // 選択した列と順序に基づいて行を並べ替える
+        rows.sort(function(rowA, rowB) {
+            var cellA, cellB;
+
+            if (sortBy === "Name") {
+                cellA = rowA.cells[0].textContent.toLowerCase();
+                cellB = rowB.cells[0].textContent.toLowerCase();
+            } else if (sortBy === "Kana") {
+                cellA = rowA.cells[1].textContent.toLowerCase();
+                cellB = rowB.cells[1].textContent.toLowerCase();
+            } else if (sortBy === "Birthdate") {
+                cellA = new Date(rowA.cells[3].textContent);
+                cellB = new Date(rowB.cells[3].textContent);
+            } else if (sortBy === "LoginId") {
+                cellA = rowA.cells[6].textContent.toLowerCase();
+                cellB = rowB.cells[6].textContent.toLowerCase();
+            }
+
+            if (sortOrder === "asc") {
+                return cellA > cellB ? 1 : cellA < cellB ? -1 : 0;
+            } else {
+                return cellB > cellA ? 1 : cellB < cellA ? -1 : 0;
+            }
+        });
+
+        // ソートされた配列に基づいてテーブル内の行を並べ替える
+        var tbody = document.querySelector('#userTable tbody');
+        tbody.innerHTML = ""; // 既存の行をクリア
+
+        rows.forEach(function(row) {
+            tbody.appendChild(row); // ソートされた行を追加
+        });
+    }
+</script>

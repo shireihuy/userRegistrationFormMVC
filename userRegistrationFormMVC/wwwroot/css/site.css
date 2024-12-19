@@ -1,0 +1,78 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* 入力、ボタン、リンクのフォーカススタイル */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* 一般的なページのスタイル */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    /* 背景画像のスタイル */
+    background-image: url('/css/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.text-center {
+    margin-top: 20px;
+}
+
+/* エラーメッセージのスタイル */
+.text-danger {
+    color: #dc3545;
+    font-size: 0.9rem;
+}
+
+/* カード型コンテナ */
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+h1, h4 {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 大画面向けのレイアウト調整 */
+@media (min-width: 992px) {
+    .form-container {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+/* リンクのスタイル */
+a {
+    color: #258cfb;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }

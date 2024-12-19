@@ -1,0 +1,72 @@
+﻿@model userRegistrationFormMVC.Controllers.UserInfo
+
+@{
+    ViewData["Title"] = "確認";
+}
+
+<h4>入力内容を確認してください</h4>
+<hr />
+<div class="row">
+        <dl class="row">
+            <dt class="col-sm-2">氏名:</dt> <!-- "Name" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">氏名(カナ):</dt> <!-- "Kana" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Kana)
+            </dd>
+            <dt class="col-sm-2">性別:</dt> <!-- "Gender" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-2">生年月日:</dt> <!-- "Birthdate" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Birthdate)
+            </dd>
+            <dt class="col-sm-2">電話番号:</dt> <!-- "Phone Number" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">メールアドレス:</dt> <!-- "Email" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">ログインID:</dt> <!-- "Login ID" -->
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LoginId)
+            </dd>
+        </dl>
+
+    <div class="d-flex">
+        <!-- フォームを保存 -->
+        <form asp-action="Save" method="post" class="me-2">
+            <input type="hidden" asp-for="Name" />
+            <input type="hidden" asp-for="Kana" />
+            <input type="hidden" asp-for="Gender" />
+            <input type="hidden" asp-for="Birthdate" />
+            <input type="hidden" asp-for="PhoneNumber" />
+            <input type="hidden" asp-for="Email" />
+            <input type="hidden" asp-for="LoginId" />
+            <input type="hidden" asp-for="Password" />
+            <div class="form-group">
+                <input type="submit" value="確定" class="btn btn-success" />
+            </div>
+        </form>
+
+        <!-- 登録画面に戻る -->
+        <form asp-action="Create" method="post">
+            <input type="hidden" asp-for="Name" />
+            <input type="hidden" asp-for="Kana" />
+            <input type="hidden" asp-for="Gender" />
+            <input type="hidden" asp-for="Birthdate" />
+            <input type="hidden" asp-for="PhoneNumber" />
+            <input type="hidden" asp-for="Email" />
+            <input type="hidden" asp-for="LoginId" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-secondary">戻る</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
